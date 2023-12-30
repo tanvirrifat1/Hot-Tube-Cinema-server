@@ -1,0 +1,57 @@
+import { Request, Response } from 'express';
+import catchAsync from '../../utils/catchAsync';
+import { UserService } from './user.service';
+import sendResponse from '../../utils/sendResponse';
+import httpStatus from 'http-status';
+
+const insertIntoDb = catchAsync(async (req: Request, res: Response) => {
+  const { ...MenuItems } = req.body;
+  const result = await UserService.insertIntoDb(MenuItems);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'user created successfully',
+    data: result,
+  });
+});
+
+const getAllData = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.getAllData();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'user fetched successfully',
+    data: result,
+  });
+});
+
+const updateData = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.updateData(req.params.id, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'user updated successfully',
+    data: result,
+  });
+});
+
+const deleteData = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.deleteData(req.params.id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'user delete successfully',
+    data: result,
+  });
+});
+
+export const UserController = {
+  insertIntoDb,
+  getAllData,
+  updateData,
+  deleteData,
+};
