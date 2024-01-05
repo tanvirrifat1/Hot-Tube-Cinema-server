@@ -1,13 +1,15 @@
+import httpStatus from 'http-status';
+import ApiError from '../../errors/AppError';
 import { IUser } from './user.interface';
 
 import { UserITem } from './user.model';
 
 const insertIntoDb = async (payload: IUser): Promise<IUser> => {
-  // const existingUser = await UserITem.findOne({ email: payload.email });
+  const existingUser = await UserITem.findOne({ email: payload.email });
 
-  // if (existingUser) {
-  //   throw new ApiError(httpStatus.BAD_REQUEST, 'user already exist');
-  // }
+  if (existingUser) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'user already exist');
+  }
 
   const result = await UserITem.create(payload);
   return result;
