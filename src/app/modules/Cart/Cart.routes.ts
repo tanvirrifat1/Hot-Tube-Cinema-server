@@ -17,7 +17,7 @@ router.delete('/:id', cartController.deleteData);
 
 router.get(
   '/',
-  auth(ENUM_USER_ROLE.USER, ENUM_USER_ROLE.ADMIN),
+  // auth(ENUM_USER_ROLE.USER, ENUM_USER_ROLE.ADMIN),
   cartController.getAllData,
 );
 router.patch('/:id', cartController.updatedData);

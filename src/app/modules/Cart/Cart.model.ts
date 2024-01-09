@@ -6,16 +6,22 @@ const cartItem = new Schema<ICart>(
     name: {
       type: String,
     },
+    name2: {
+      type: String,
+    },
     email: {
       type: String,
     },
     overview: {
       type: String,
     },
+    video: {
+      type: String,
+    },
     title: {
       type: String,
     },
-    url: {
+    image: {
       type: String,
     },
 
