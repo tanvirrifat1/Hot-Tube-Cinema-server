@@ -18,10 +18,7 @@ const auth =
       // verify token
       let verifiedUser = null;
 
-      verifiedUser = jwtHelpers.verifyToken(
-        token,
-        config.jwt_access_secret as Secret,
-      );
+      verifiedUser = jwtHelpers.verifyToken(token, config.jwt.secret as Secret);
 
       req.user = verifiedUser; // role  , userid
 
